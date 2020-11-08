@@ -1,0 +1,187 @@
+
+SQL*Loader: Release 11.2.0.2.0 - Production on Sun Nov 8 16:55:12 2020
+
+Copyright (c) 1982, 2009, Oracle and/or its affiliates.  All rights reserved.
+
+Control File:   C:\Users\Tiburoncin\IdeaProjects\multichainJava\src\main\java\otherApp\loadbloques.ctl
+Data File:      C:\Users\Tiburoncin\IdeaProjects\multichainJava\src\main\java\otherApp\MuestraBloques.csv
+  File processing option string: "str '\n'"
+  Bad File:     C:\Users\Tiburoncin\IdeaProjects\multichainJava\src\main\java\otherApp\MuestraBloques.bad
+  Discard File:  none specified
+ 
+ (Allow all discards)
+
+Number to load: ALL
+Number to skip: 0
+Errors allowed: 50
+Bind array:     64 rows, maximum of 256000 bytes
+Continuation:    none specified
+Path used:      Conventional
+
+Table BLOQUE, loaded from every logical record.
+Insert option in effect for this table: INSERT
+
+   Column Name                  Position   Len  Term Encl Datatype
+------------------------------ ---------- ----- ---- ---- ---------------------
+ID                                  FIRST  1000   ,       CHARACTER            
+HASH                                 NEXT  1000   ,       CHARACTER            
+TIME                                 NEXT     *   ,       DATETIME DD/MM/YY HH24:MI
+SIZE_BLOQUE                          NEXT     *   ,       CHARACTER            
+MINER                                NEXT  1000   ,       CHARACTER            
+EXTRA_DATA_HEX                       NEXT  1000   ,       CHARACTER            
+DIFFICULTY                           NEXT  1000   ,       CHARACTER            
+GAS_USED                             NEXT     *   ,       CHARACTER            
+GAS_LIMIT                            NEXT     *   ,       CHARACTER            
+LOGS_BLOOM                           NEXT  1000   ,       CHARACTER            
+MIX_HASH                             NEXT  1000   ,       CHARACTER            
+NONCE                                NEXT     *   ,       CHARACTER            
+RECEIPTS_ROOT                        NEXT  1000   ,       CHARACTER            
+SHA3_UNCLES                          NEXT  1000   ,       CHARACTER            
+STATE_ROOT                           NEXT  1000   ,       CHARACTER            
+TOTAL_DIFFICULTY                     NEXT     *   ,       CHARACTER            
+TRANSACTIONS_ROOT                    NEXT  1000   ,       CHARACTER            
+UNCLE_COUNT                          NEXT     *   ,       CHARACTER            
+TRANSACTION_COUNT                    NEXT     *   ,       CHARACTER            
+SYNTHETIC_TRANSACTION_COUNT          NEXT     *   ,       CHARACTER            
+CALL_COUNT                           NEXT     *   ,       CHARACTER            
+SYNTHETIC_CALL_COUNT                 NEXT     *   ,       CHARACTER            
+VALUE_TOTAL                          NEXT     *   ,       CHARACTER            
+VALUE_TOTAL_USD                      NEXT     *   ,       CHARACTER            
+INTERNAL_VALUE_TOTAL                 NEXT     *   ,       CHARACTER            
+INTERNAL_VALUE_TOTAL_USD             NEXT     *   ,       CHARACTER            
+GENERATION                           NEXT     *   ,       CHARACTER            
+GENERATION_USD                       NEXT     *   ,       CHARACTER            
+UNCLE_GENERATION                     NEXT     *   ,       CHARACTER            
+UNCLE_GENERATION_USD                 NEXT     *   ,       CHARACTER            
+FEE_TOTAL                            NEXT     *   ,       CHARACTER            
+FEE_TOTAL_USD                        NEXT     *   ,       CHARACTER            
+REWARD                               NEXT     *   ,       CHARACTER            
+REWARD_USD                           NEXT     *   ,       CHARACTER            
+
+value used for ROWS parameter changed from 64 to 15
+Record 1: Rejected - Error on table BLOQUE, column ID.
+ORA-01722: invalid number
+
+Record 2: Rejected - Error on table BLOQUE, column VALUE_TOTAL_USD.
+ORA-01722: invalid number
+
+Record 3: Rejected - Error on table BLOQUE, column VALUE_TOTAL_USD.
+ORA-01722: invalid number
+
+Record 4: Rejected - Error on table BLOQUE, column VALUE_TOTAL_USD.
+ORA-01722: invalid number
+
+Record 5: Rejected - Error on table BLOQUE, column VALUE_TOTAL_USD.
+ORA-01722: invalid number
+
+Record 6: Rejected - Error on table BLOQUE, column VALUE_TOTAL_USD.
+ORA-01722: invalid number
+
+Record 7: Rejected - Error on table BLOQUE, column VALUE_TOTAL_USD.
+ORA-01722: invalid number
+
+Record 8: Rejected - Error on table BLOQUE, column VALUE_TOTAL_USD.
+ORA-01722: invalid number
+
+Record 9: Rejected - Error on table BLOQUE, column VALUE_TOTAL_USD.
+ORA-01722: invalid number
+
+Record 10: Rejected - Error on table BLOQUE, column VALUE_TOTAL_USD.
+ORA-01722: invalid number
+
+Record 11: Rejected - Error on table BLOQUE, column VALUE_TOTAL_USD.
+ORA-01722: invalid number
+
+Record 12: Rejected - Error on table BLOQUE, column VALUE_TOTAL_USD.
+ORA-01722: invalid number
+
+Record 13: Rejected - Error on table BLOQUE, column VALUE_TOTAL_USD.
+ORA-01722: invalid number
+
+Record 14: Rejected - Error on table BLOQUE, column VALUE_TOTAL_USD.
+ORA-01722: invalid number
+
+Record 15: Rejected - Error on table BLOQUE, column VALUE_TOTAL_USD.
+ORA-01722: invalid number
+
+Record 16: Rejected - Error on table BLOQUE, column VALUE_TOTAL_USD.
+ORA-01722: invalid number
+
+Record 17: Rejected - Error on table BLOQUE, column VALUE_TOTAL_USD.
+ORA-01722: invalid number
+
+Record 18: Rejected - Error on table BLOQUE, column VALUE_TOTAL_USD.
+ORA-01722: invalid number
+
+Record 19: Rejected - Error on table BLOQUE, column VALUE_TOTAL_USD.
+ORA-01722: invalid number
+
+Record 20: Rejected - Error on table BLOQUE, column VALUE_TOTAL_USD.
+ORA-01722: invalid number
+
+Record 21: Rejected - Error on table BLOQUE, column VALUE_TOTAL_USD.
+ORA-01722: invalid number
+
+Record 22: Rejected - Error on table BLOQUE, column VALUE_TOTAL_USD.
+ORA-01722: invalid number
+
+Record 23: Rejected - Error on table BLOQUE, column VALUE_TOTAL_USD.
+ORA-01722: invalid number
+
+Record 24: Rejected - Error on table BLOQUE, column VALUE_TOTAL_USD.
+ORA-01722: invalid number
+
+Record 25: Rejected - Error on table BLOQUE, column VALUE_TOTAL_USD.
+ORA-01722: invalid number
+
+Record 26: Rejected - Error on table BLOQUE, column VALUE_TOTAL_USD.
+ORA-01722: invalid number
+
+Record 27: Rejected - Error on table BLOQUE, column VALUE_TOTAL_USD.
+ORA-01722: invalid number
+
+Record 28: Rejected - Error on table BLOQUE, column VALUE_TOTAL_USD.
+ORA-01722: invalid number
+
+Record 29: Rejected - Error on table BLOQUE, column VALUE_TOTAL_USD.
+ORA-01722: invalid number
+
+Record 30: Rejected - Error on table BLOQUE, column VALUE_TOTAL_USD.
+ORA-01722: invalid number
+
+Record 31: Rejected - Error on table BLOQUE, column VALUE_TOTAL_USD.
+ORA-01722: invalid number
+
+Record 32: Rejected - Error on table BLOQUE, column VALUE_TOTAL_USD.
+ORA-01722: invalid number
+
+Record 33: Rejected - Error on table BLOQUE, column VALUE_TOTAL_USD.
+ORA-01722: invalid number
+
+Record 34: Rejected - Error on table BLOQUE, column VALUE_TOTAL_USD.
+ORA-01722: invalid number
+
+Record 35: Rejected - Error on table BLOQUE, column VALUE_TOTAL_USD.
+ORA-01722: invalid number
+
+
+Table BLOQUE:
+  0 Rows successfully loaded.
+  35 Rows not loaded due to data errors.
+  0 Rows not loaded because all WHEN clauses were failed.
+  0 Rows not loaded because all fields were null.
+
+
+Space allocated for bind array:                 254340 bytes(15 rows)
+Read   buffer bytes: 1048576
+
+Total logical records skipped:          0
+Total logical records read:            35
+Total logical records rejected:        35
+Total logical records discarded:        0
+
+Run began on Sun Nov 08 16:55:12 2020
+Run ended on Sun Nov 08 16:55:15 2020
+
+Elapsed time was:     00:00:02.94
+CPU time was:         00:00:00.01

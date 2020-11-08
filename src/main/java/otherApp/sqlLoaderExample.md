@@ -15,14 +15,49 @@ Creeeo que se puede remover el optionally enclosed by.
 Table por la tabla :O.
 
 ```
-load data
- infile 'example.dat'  "str '|\n'"
- into table example
- fields terminated by ',' optionally enclosed by '"'
- (col1 char(5),
-  col2 char(7))
+sqlldr 
+load data 
+ infile 'MuestraBloques.csv'  "str '\n'" 
+ into table BLOQUE 
+ fields terminated by ';' 
+ (id,
+  hash,
+  time,
+  size_bloque,
+  miner,
+  extra_data_hex,
+  difficulty,
+  gas_used,
+  gas_limit,
+  logs_bloom,
+  mix_hash,
+  nonce,
+  receipts_root,
+  sha3_uncles,
+  state_root,
+  total_difficulty,
+  transactions_root,
+  uncle_count,
+  transaction_count,
+  synthetic_transaction_count,
+  call_count,
+  synthetic_call_count,
+  value_total,
+  value_total_usd,
+  internal_value_total,
+  internal_value_total_usd,
+  generation,
+  generation_usd,
+  uncle_generation,
+  uncle_generation_usd,
+  fee_total,
+  fee_total_usd,
+  reward,
+  reward_usd)
  
  example.dat:
  hello,world,|
  james,bond,|
 ```
+
+sqlldr control=C:\Users\Tiburoncin\IdeaProjects\multichainJava\src\main\java\otherApp\loadbloques.ctl log=C:\Users\Tiburoncin\IdeaProjects\multichainJava\src\main\java\otherApp\loadbloques.log
