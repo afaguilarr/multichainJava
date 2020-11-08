@@ -22,7 +22,7 @@ public class OracleDatabase {
         }
         try { // Se establece la conexión con la base de datos
             connection = DriverManager.getConnection
-                    ("jdbc:oracle:thin:@localhost:1521:xe", "gato", "gato");
+                    ("jdbc:oracle:thin:@192.168.0.3:1521:xe", "gato", "gato");
             sentencia = connection.createStatement();
         } catch (SQLException e) {
             System.out.println("No hay conexión con la base de datos.");
@@ -40,16 +40,16 @@ public class OracleDatabase {
         }
     }
 
-    static void insertUsuario(String nombreUsuario, String contrasena) throws MultichainException {
-        startConnection();
+    static void insertUsuario(String nombreUsuario, String contrasena) throws MultichainException, SQLException {
 
         if (getUsuarioByNombreUsuario(nombreUsuario) == null) {
 
             String direccion = MultiChainAPI.getNewAddress();
 
             try {
+                startConnection();
                 System.out.println("Insert usuario");
-                String query = String.format("INSERT INTO usuario(nombre_usuario, contrasena, direccion)" +
+                String query = String.format("INSERT INTO usuario" +
                         " VALUES('%s', '%s', '%s')", nombreUsuario, contrasena, direccion);
 
                 resultado = sentencia.executeQuery(query);
@@ -60,6 +60,7 @@ public class OracleDatabase {
                 System.out.println("Error: " +
                         e.getMessage());
                 closeConnection();
+                throw e;
             }
         }
         else{
@@ -72,16 +73,17 @@ public class OracleDatabase {
 
         try {
             System.out.println("Select usuario by nombreUsuario and contrasena");
-            String query = String.format("SELECT nombre_usuario FROM usuario WHERE" +
+            String query = String.format("SELECT * FROM usuario WHERE" +
                     " nombre_usuario = '%s' AND contrasena = '%s'", nombreUsuario, contrasena);
 
             resultado = sentencia.executeQuery(query);
 
             if (resultado.next()) {
-                closeConnection();
-                return new Usuario(resultado.getString("nombre_usuario"),
+                Usuario usuario = new Usuario(resultado.getString("nombre_usuario"),
                         resultado.getString("contrasena"),
                         resultado.getString("direccion"));
+                closeConnection();
+                return usuario;
             }
 
             closeConnection();
@@ -101,16 +103,18 @@ public class OracleDatabase {
 
         try {
             System.out.println("Select usuario by nombreUsuario");
-            String query = String.format("SELECT nombre_usuario FROM usuario WHERE" +
+            String query = String.format("SELECT * FROM usuario WHERE" +
                     " nombre_usuario = '%s'", nombreUsuario);
 
             resultado = sentencia.executeQuery(query);
 
             if (resultado.next()) {
-                closeConnection();
-                return new Usuario(resultado.getString("nombre_usuario"),
+               Usuario usuario = new Usuario(resultado.getString("nombre_usuario"),
                         resultado.getString("contrasena"),
                         resultado.getString("direccion"));
+                closeConnection();
+                return usuario;
+
             }
 
             closeConnection();

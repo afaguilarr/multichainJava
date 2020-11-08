@@ -7,6 +7,7 @@ direccion VARCHAR2(100)
 );
 
 INSERT INTO usuario(nombre_usuario, contrasena, direccion) VALUES('admin', 'admin', 'direccion_original_bdchain');
+INSERT INTO usuario(nombre_usuario, contrasena, direccion) VALUES('admin', 'admin', '18WaSGmaoB6XMRxagBUz9tPTTPpScSvhwHa8f7');
 
 INSERT INTO usuario(nombre_usuario, contrasena, direccion) VALUES('holi', 'password', 'jhdlhjashjldkhafhdsajshd');
 

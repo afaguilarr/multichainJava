@@ -59,13 +59,19 @@ class Vista {
             }
         });
 
-        JLabel saldo = new JLabel("Saldo: " + MultiChainAPI.getAddressBalances(usuarioEnSesion.direccion));
+        JLabel saldo = new JLabel();
+
         saldo.setBounds(200, 245, 300, 30);
 
         JButton goToSaldo = new JButton("Consultar saldo");
         goToSaldo.setBounds(250, 300, 500, 50);
         goToSaldo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                try {
+                    saldo.setText("Saldo: " + MultiChainAPI.getAddressBalances(usuarioEnSesion.direccion));
+                } catch (MultichainException multichainException) {
+                    JOptionPane.showMessageDialog(framePrincipal, "El saldo no se pudo obtener");
+                }
                 frameSaldo.setVisible(true);
                 frameSesion.setVisible(false);
                 frameSaldo.add(volverSesion);
@@ -113,7 +119,7 @@ class Vista {
                     frameRegistro.setVisible(false);
                     framePrincipal.setVisible(true);
                     JOptionPane.showMessageDialog(framePrincipal, "El usuario fue registrado exitosamente.");
-                } catch (InvalidParameterException invalidParameterException){
+                } catch (InvalidParameterException invalidParameterException) {
                     JOptionPane.showMessageDialog(framePrincipal, "El nombre de usuario ingresado ya existe.");
                 } catch (Exception exception) {
                     JOptionPane.showMessageDialog(framePrincipal, "El registro falló D:");
@@ -139,7 +145,7 @@ class Vista {
                     usuarioEnSesion = OracleDatabase.getUsuario(nombreUsuarioLogin.getText(), contrasenaLogin.getText());
                     if (usuarioEnSesion == null) {
                         JOptionPane.showMessageDialog(framePrincipal, "Credenciales incorrectas.");
-                    } else{
+                    } else {
                         nombreUsuarioLogin.setText("");
                         contrasenaLogin.setText("");
                         frameLogin.setVisible(false);
@@ -153,12 +159,12 @@ class Vista {
         });
 
         JLabel labelNombreUsuarioPago = new JLabel("Ingrese el nombre del usuario al que se enviaran los activos:");
-        labelNombreUsuarioPago.setBounds(350, 245, 300, 30);
+        labelNombreUsuarioPago.setBounds(350, 245, 600, 30);
         JTextField nombreUsuarioPago = new JTextField();
         nombreUsuarioPago.setBounds(330, 280, 300, 40);
 
-        JLabel labelCantidadText = new JLabel("Ingrese el nombre del usuario al que se enviaran los activos:");
-        labelCantidadText.setBounds(350, 445, 300, 30);
+        JLabel labelCantidadText = new JLabel("Ingrese la cantidad a pagar:");
+        labelCantidadText.setBounds(350, 445, 600, 30);
         JTextField cantidadText = new JTextField();
         cantidadText.setBounds(330, 480, 300, 40);
 
@@ -176,7 +182,9 @@ class Vista {
                     JOptionPane.showMessageDialog(framePrincipal, "El pago fue efectuado correctamente.");
                 } catch (NullPointerException nullPointerException) {
                     JOptionPane.showMessageDialog(framePrincipal, "El usuario no existe.");
-                } catch (Exception exception){
+                } catch (MultichainException multichainException) {
+                    JOptionPane.showMessageDialog(framePrincipal, multichainException.getReason());
+                } catch (Exception exception) {
                     JOptionPane.showMessageDialog(framePrincipal, "El pago falló D:");
                 }
             }
@@ -201,8 +209,10 @@ class Vista {
 
         frameSesion.add(goToSaldo);
         frameSesion.add(goToPago);
+        frameSesion.add(cerrarSesion);
 
         frameSaldo.add(volverSesion);
+        frameSaldo.add(saldo);
 
         framePago.add(labelNombreUsuarioPago);
         framePago.add(nombreUsuarioPago);
