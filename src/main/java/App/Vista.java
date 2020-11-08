@@ -1,5 +1,7 @@
 package App;
 
+import multichain.command.MultichainException;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,7 +11,7 @@ import java.util.Objects;
 class Vista {
     static Usuario usuarioEnSesion = null;
 
-    public static void vista() {
+    public static void vista() throws MultichainException {
         final JFrame framePrincipal = new JFrame("Menu principal");
         final JFrame frameRegistro = new JFrame("Registro");
         final JFrame frameLogin = new JFrame("Login");
@@ -18,7 +20,7 @@ class Vista {
         final JFrame framePago = new JFrame("Pagos");
 
         JButton volverPrincipal = new JButton("< Volver");
-        volverPrincipal.setBounds(250, 750, 500, 50);
+        volverPrincipal.setBounds(250, 650, 200, 50);
         volverPrincipal.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frameRegistro.setVisible(false);
@@ -28,7 +30,7 @@ class Vista {
         });
 
         JButton volverSesion = new JButton("< Volver");
-        volverSesion.setBounds(250, 750, 500, 50);
+        volverSesion.setBounds(250, 650, 200, 50);
         volverSesion.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frameSaldo.setVisible(false);
@@ -38,43 +40,50 @@ class Vista {
         });
 
         JButton goToRegistro = new JButton("Registrarse");
-        goToRegistro.setBounds(250, 350, 500, 50);
+        goToRegistro.setBounds(250, 300, 500, 50);
         goToRegistro.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frameRegistro.setVisible(true);
                 framePrincipal.setVisible(false);
+                frameRegistro.add(volverPrincipal);
             }
         });
 
         JButton goToLogin = new JButton("Login");
-        goToLogin.setBounds(250, 750, 500, 50);
+        goToLogin.setBounds(250, 600, 500, 50);
         goToLogin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frameLogin.setVisible(true);
                 framePrincipal.setVisible(false);
+                frameLogin.add(volverPrincipal);
             }
         });
 
+        JLabel saldo = new JLabel("Saldo: " + MultiChainAPI.getAddressBalances(usuarioEnSesion.direccion));
+        saldo.setBounds(200, 245, 300, 30);
+
         JButton goToSaldo = new JButton("Consultar saldo");
-        goToSaldo.setBounds(250, 350, 500, 50);
+        goToSaldo.setBounds(250, 300, 500, 50);
         goToSaldo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frameSaldo.setVisible(true);
                 frameSesion.setVisible(false);
+                frameSaldo.add(volverSesion);
             }
         });
 
         JButton goToPago = new JButton("Pagar");
-        goToPago.setBounds(250, 550, 500, 50);
+        goToPago.setBounds(250, 500, 500, 50);
         goToPago.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 framePago.setVisible(true);
                 frameSesion.setVisible(false);
+                framePago.add(volverSesion);
             }
         });
 
         JButton cerrarSesion = new JButton("Cerrar sesión");
-        cerrarSesion.setBounds(250, 750, 500, 50);
+        cerrarSesion.setBounds(250, 700, 500, 50);
         cerrarSesion.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 usuarioEnSesion.direccion = null;
@@ -84,17 +93,17 @@ class Vista {
         });
 
         JLabel labelNombreUsuarioRegistro = new JLabel("Ingrese el nombre de usuario:");
-        labelNombreUsuarioRegistro.setBounds(620, 245, 300, 30);
+        labelNombreUsuarioRegistro.setBounds(350, 245, 300, 30);
         JTextField nombreUsuarioRegistro = new JTextField();
-        nombreUsuarioRegistro.setBounds(600, 280, 300, 40);
+        nombreUsuarioRegistro.setBounds(330, 280, 300, 40);
 
         JLabel labelContrasenaRegistro = new JLabel("Ingrese la contraseña del usuario:");
-        labelContrasenaRegistro.setBounds(620, 445, 300, 30);
+        labelContrasenaRegistro.setBounds(350, 445, 300, 30);
         JTextField contrasenaRegistro = new JTextField();
-        contrasenaRegistro.setBounds(600, 480, 300, 40);
+        contrasenaRegistro.setBounds(330, 480, 300, 40);
 
         JButton registrarse = new JButton("Registrarse");
-        registrarse.setBounds(550, 750, 500, 50);
+        registrarse.setBounds(550, 650, 200, 50);
         registrarse.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -113,17 +122,17 @@ class Vista {
         });
 
         JLabel labelNombreUsuarioLogin = new JLabel("Ingrese el nombre de usuario:");
-        labelNombreUsuarioLogin.setBounds(620, 245, 300, 30);
+        labelNombreUsuarioLogin.setBounds(350, 245, 300, 30);
         JTextField nombreUsuarioLogin = new JTextField();
-        nombreUsuarioLogin.setBounds(600, 280, 300, 40);
+        nombreUsuarioLogin.setBounds(330, 280, 300, 40);
 
         JLabel labelContrasenaLogin = new JLabel("Ingrese la contraseña del usuario:");
-        labelContrasenaLogin.setBounds(620, 445, 300, 30);
+        labelContrasenaLogin.setBounds(350, 445, 300, 30);
         JTextField contrasenaLogin = new JTextField();
-        contrasenaLogin.setBounds(600, 480, 300, 40);
+        contrasenaLogin.setBounds(330, 480, 300, 40);
 
         JButton login = new JButton("Login");
-        login.setBounds(550, 750, 500, 50);
+        login.setBounds(550, 650, 200, 50);
         login.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -144,17 +153,17 @@ class Vista {
         });
 
         JLabel labelNombreUsuarioPago = new JLabel("Ingrese el nombre del usuario al que se enviaran los activos:");
-        labelNombreUsuarioPago.setBounds(620, 245, 300, 30);
+        labelNombreUsuarioPago.setBounds(350, 245, 300, 30);
         JTextField nombreUsuarioPago = new JTextField();
-        nombreUsuarioPago.setBounds(600, 280, 300, 40);
+        nombreUsuarioPago.setBounds(330, 280, 300, 40);
 
         JLabel labelCantidadText = new JLabel("Ingrese el nombre del usuario al que se enviaran los activos:");
-        labelCantidadText.setBounds(620, 445, 300, 30);
+        labelCantidadText.setBounds(350, 445, 300, 30);
         JTextField cantidadText = new JTextField();
-        cantidadText.setBounds(600, 480, 300, 40);
+        cantidadText.setBounds(330, 480, 300, 40);
 
         JButton pagar = new JButton("Pagar");
-        pagar.setBounds(550, 750, 500, 50);
+        pagar.setBounds(550, 650, 200, 50);
         pagar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
