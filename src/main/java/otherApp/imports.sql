@@ -1,72 +1,72 @@
 DROP TABLE BLOQUE;
 
 CREATE TABLE BLOQUE (
-id NUMBER(30) PRIMARY KEY,
+id VARCHAR(30) PRIMARY KEY,
 hash VARCHAR(100),
 time TIMESTAMP,
-size_bloque NUMBER(30),  -- Esta tuvo que cambiar de nombre
+size_bloque VARCHAR(100),  -- Esta tuvo que cambiar de nombre
 miner VARCHAR(100),
 extra_data_hex VARCHAR(100),
 difficulty VARCHAR(100),
-gas_used NUMBER(30),
-gas_limit NUMBER(30),
+gas_used VARCHAR(100),
+gas_limit VARCHAR(100),
 logs_bloom VARCHAR(1000),
 mix_hash VARCHAR(1000),
-nonce NUMBER(30),
+nonce VARCHAR(100),
 receipts_root VARCHAR(100),
 sha3_uncles VARCHAR(100),
 state_root VARCHAR(100),
-total_difficulty NUMBER(30),
+total_difficulty VARCHAR(100),
 transactions_root VARCHAR(100),
-uncle_count NUMBER(30),
-transaction_count NUMBER(30),
-synthetic_transaction_count NUMBER(30),
-call_count NUMBER(30),
-synthetic_call_count NUMBER(30),
-value_total NUMBER(30),
-value_total_usd NUMBER(30),
-internal_value_total NUMBER(30),
-internal_value_total_usd NUMBER(30),
-generation NUMBER(30),
-generation_usd NUMBER(30),
-uncle_generation NUMBER(30),
-uncle_generation_usd NUMBER(30),
-fee_total NUMBER(30),
-fee_total_usd FLOAT(30),
-reward NUMBER(30),
-reward_usd NUMBER(30)
+uncle_count VARCHAR(100),
+transaction_count VARCHAR(100),
+synthetic_transaction_count VARCHAR(100),
+call_count VARCHAR(100),
+synthetic_call_count VARCHAR(100),
+value_total VARCHAR(100),
+value_total_usd VARCHAR(100),
+internal_value_total VARCHAR(100),
+internal_value_total_usd VARCHAR(100),
+generation VARCHAR(100),
+generation_usd VARCHAR(100),
+uncle_generation VARCHAR(100),
+uncle_generation_usd VARCHAR(100),
+fee_total VARCHAR(100),
+fee_total_usd VARCHAR(100),
+reward VARCHAR(100),
+reward_usd VARCHAR(100)
 );
 
 
 DROP TABLE TRANSACCION;
 
 CREATE TABLE TRANSACCION (
-block_id NUMBER(30), -- Esta es una clave foranea hacia BLOQUE
+block_id VARCHAR(30), -- Esta es una clave foranea hacia BLOQUE
 CONSTRAINT clave_foranea_bloque FOREIGN KEY (block_id) REFERENCES BLOQUE(id),
-index_transaccion NUMBER(30) PRIMARY KEY, -- Esta cambio de nombre
+index_transaccion VARCHAR(30), -- Esta cambio de nombre
 hash VARCHAR(100),
 time TIMESTAMP,
-failed NUMBER(1,0), -- 1 es true y 0 es false
+failed VARCHAR(5), -- 1 es true y 0 es false
 type VARCHAR(100),
 sender VARCHAR(100),
 recipient VARCHAR(100),
-call_count NUMBER(30),
-value NUMBER(30),
-value_usd NUMBER(30),
-internal_value NUMBER(30),
-internal_value_usd NUMBER(30),
-fee NUMBER(30),
+call_count VARCHAR(30),
+value VARCHAR(30),
+value_usd FLOAT(30),
+internal_value VARCHAR(30),
+internal_value_usd VARCHAR(30),
+fee VARCHAR(30),
 fee_usd FLOAT(30),
-gas_used NUMBER(30),
-gas_limit NUMBER(30),
-gas_price NUMBER(30),
-input_hex VARCHAR(200),
-nonce NUMBER(30),
-v VARCHAR(100),
-r VARCHAR(100),
-s VARCHAR(100),
-x NUMBER(30),
-y NUMBER(30)
+gas_used VARCHAR(30),
+gas_limit VARCHAR(30),
+gas_price VARCHAR(30),
+input_hex VARCHAR(1000),
+nonce VARCHAR(30),
+v VARCHAR(1000),
+r VARCHAR(1000),
+s VARCHAR(1000),
+x FLOAT(30),
+y FLOAT(30)
 );
 
 INSERT INTO BLOQUE(id, miner, time) values('1','holi', TO_DATE('09/18/20 11:30', 'mm/dd/yy hh24:mi'));
