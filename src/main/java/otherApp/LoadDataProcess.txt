@@ -1,0 +1,6 @@
+Para cargar los archivos a la Bd de oracle, usamos SQL developer, el cual permite importar los datos
+directamente a la BD desde los archivos de excel originales.
+
+Para tener en cuenta, el formato de fecha usado durante la importación fue:
+
+DD/MM/YY HH24:MI
