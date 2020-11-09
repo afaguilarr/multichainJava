@@ -1,9 +1,7 @@
 package otherApp;
 
-import multichain.command.MultichainException;
-
 public class OtherApp {
-    public static void main(String[] args) throws MultichainException {
+    public static void main(String[] args) {
         OtherVista.vista();
     }
 }
