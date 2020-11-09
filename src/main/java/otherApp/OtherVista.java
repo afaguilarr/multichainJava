@@ -98,18 +98,22 @@ class OtherVista {
                         index ++;
                     }
 
-                    JFrame mapa = new MapaTransacciones(initialTime2.getText(), finalTime2.getText(), Integer.parseInt(cuadriculaSize.getText()), colors);
+                    MapaTransacciones mapa = new MapaTransacciones(initialTime2.getText(), finalTime2.getText(), Integer.parseInt(cuadriculaSize.getText()), colors);
+                    JFrame inputMapa = new JFrame();
+
+                    inputMapa.setSize(1000, 1000);
+                    inputMapa.setLayout(null);
 
                     JLabel labelCuadriculaNumber = new JLabel("Ingrese número de cuadrícula:");
-                    labelCuadriculaNumber.setBounds(150, 870, 300, 30);
+                    labelCuadriculaNumber.setBounds(150, 370, 300, 30);
                     JTextField cuadriculaNumber = new JTextField();
-                    cuadriculaNumber.setBounds(130, 910, 300, 40);
+                    cuadriculaNumber.setBounds(130, 410, 300, 40);
 
                     JLabel labelOrdenarPor = new JLabel("Ordenar por:");
-                    labelOrdenarPor.setBounds(500, 870, 150, 30);
+                    labelOrdenarPor.setBounds(500, 370, 150, 30);
 
                     JButton time = new JButton("Time");
-                    time.setBounds(650, 650, 100, 50);
+                    time.setBounds(650, 410, 100, 50);
                     time.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
                             try {
@@ -123,11 +127,16 @@ class OtherVista {
                                         JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
                                 scroll.setBounds(130, 130, 400,  300);
 
-                                info.setText("Esto es lo que hay que modificar" + cuadriculaNumber.getText());
+                                StringBuilder listaTransacciones = new StringBuilder();
+                                for(Transaction transaction : mapa.getTransaccionesByDate(Integer.parseInt(cuadriculaNumber.getText()))){
+                                    listaTransacciones.append(transaction.toString()).append("\n");
+                                }
+
+                                info.setText(listaTransacciones.toString());
                                 info.setEditable(false);
 
                                 frameInfo.add(labelOrden);
-                                frameInfo.add(info);
+                                frameInfo.add(scroll);
 
                                 frameInfo.setSize(600,600);
                                 frameInfo.setLayout(null);
@@ -140,7 +149,7 @@ class OtherVista {
                     });
 
                     JButton valueUSD = new JButton("Value_usd");
-                    valueUSD.setBounds(760, 650, 100, 50);
+                    valueUSD.setBounds(760, 410, 100, 50);
                     valueUSD.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
                             try {
@@ -154,11 +163,16 @@ class OtherVista {
                                         JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
                                 scroll.setBounds(130, 130, 400,  300);
 
-                                info.setText("Esto es lo que hay que modificar" + cuadriculaNumber.getText());
+                                StringBuilder listaTransacciones = new StringBuilder();
+                                for(Transaction transaction : mapa.getTransaccionesByValueUsd(Integer.parseInt(cuadriculaNumber.getText()))){
+                                    listaTransacciones.append(transaction.toString()).append("\n");
+                                }
+
+                                info.setText(listaTransacciones.toString());
                                 info.setEditable(false);
 
                                 frameInfo.add(labelOrden);
-                                frameInfo.add(info);
+                                frameInfo.add(scroll);
 
                                 frameInfo.setSize(600,600);
                                 frameInfo.setLayout(null);
@@ -171,7 +185,7 @@ class OtherVista {
                     });
 
                     JButton feeUSD = new JButton("Fee_usd");
-                    feeUSD.setBounds(870, 650, 100, 50);
+                    feeUSD.setBounds(870, 410, 100, 50);
                     feeUSD.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
                             try {
@@ -185,11 +199,17 @@ class OtherVista {
                                         JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
                                 scroll.setBounds(130, 130, 400,  300);
 
-                                info.setText("Esto es lo que hay que modificar" + cuadriculaNumber.getText());
+                                StringBuilder listaTransacciones = new StringBuilder();
+                                for(Transaction transaction : mapa.getTransaccionesByFeeUsd(Integer.parseInt(cuadriculaNumber.getText()))){
+                                    listaTransacciones.append(transaction.toString()).append("\n");
+                                }
+
+                                info.setText(listaTransacciones.toString());
+
                                 info.setEditable(false);
 
                                 frameInfo.add(labelOrden);
-                                frameInfo.add(info);
+                                frameInfo.add(scroll);
 
                                 frameInfo.setSize(600,600);
                                 frameInfo.setLayout(null);
@@ -201,12 +221,13 @@ class OtherVista {
                         }
                     });
 
-                    mapa.add(cuadriculaNumber);
-                    mapa.add(labelCuadriculaNumber);
-                    mapa.add(labelOrdenarPor);
-                    mapa.add(time);
-                    mapa.add(valueUSD);
-                    mapa.add(feeUSD);
+                    inputMapa.add(cuadriculaNumber);
+                    inputMapa.add(labelCuadriculaNumber);
+                    inputMapa.add(labelOrdenarPor);
+                    inputMapa.add(time);
+                    inputMapa.add(valueUSD);
+                    inputMapa.add(feeUSD);
+                    inputMapa.setVisible(true);
                     mapa.setVisible(true);
 
 //                    colorScale.setText("");
@@ -294,6 +315,7 @@ class OtherVista {
         framePrincipal.setSize(1000, 1000);
         frameComparacion.setSize(1000, 1000);
         frameTransacciones.setSize(1000, 1000);
+
 
         framePrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameComparacion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

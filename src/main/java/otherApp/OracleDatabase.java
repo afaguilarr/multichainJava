@@ -73,7 +73,7 @@ public class OracleDatabase {
 
         try {
             System.out.println("Select TRANSACTION by TIME");
-            String query = String.format("SELECT x, y, value_usd, fee_usd, block_id, sender, recipient FROM TRANSACCION " +
+            String query = String.format("SELECT x, y, value_usd, fee_usd, block_id, sender, recipient, TO_CHAR(time,'hh24:mi') FROM TRANSACCION " +
                     "WHERE TO_CHAR(TRANSACCION.time,'hh24:mi') BETWEEN '%s' AND '%s'", initialTime, finalTime);
 
             resultado = sentencia.executeQuery(query);
@@ -88,8 +88,9 @@ public class OracleDatabase {
                 String block_id = resultado.getString("block_id");
                 String sender = resultado.getString("sender");
                 String recipient = resultado.getString("recipient");
+                String date = resultado.getString("TO_CHAR(time,hh24:mi)");
 
-                Transaction transaction = new Transaction(x, y, value_usd, fee_usd, block_id, sender, recipient);
+                Transaction transaction = new Transaction(x, y, value_usd, fee_usd, block_id, sender, recipient, date);
                 transactions.add(transaction);
 
             }
