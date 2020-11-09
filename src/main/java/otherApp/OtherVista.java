@@ -11,9 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Objects;
 
 class OtherVista {
@@ -116,13 +114,6 @@ class OtherVista {
                               ArrayList<Double> secondMinerValues, String firstMiner,
                               String secondMiner){
 
-//        firstMinerValues = new ArrayList<Double>(){{
-//            add(12.2); add(90.3); add(9.45); add(12.2); add(12.2); add(9.45);
-//        }};
-//        secondMinerValues = new ArrayList<Double>(){{
-//            add(30.2); add(97.3); add(22.45); add(22.45); add(22.45); add(30.2);
-//        }};
-
         ArrayList<String> resultListString = new ArrayList<String>();
         for (int i = 0; i < firstMinerValues.size(); i++){
             int contador = 1;
@@ -195,14 +186,17 @@ class OtherVista {
         chart.getStyler().setToolTipsEnabled(true);
         chart.getStyler().setToolTipsAlwaysVisible(true);
 
-        AxesChartSeries firstSeries = chart.addSeries("Miner: " + firstMiner, arrayMinersValues, arrayMinersValues);
-        AxesChartSeries secondSeries = chart.addSeries("Miner: " + secondMiner, secondArrayMinersValues, secondArrayMinersValues);
+        if (arrayMinersValues.length > 0){
+            AxesChartSeries firstSeries = chart.addSeries("Miner: " + firstMiner, arrayMinersValues, arrayMinersValues);
+            firstSeries.setCustomToolTips(true);
+            firstSeries.setToolTips(firstTooltips);
+        }
 
-        firstSeries.setCustomToolTips(true);
-        firstSeries.setToolTips(firstTooltips);
-
-        secondSeries.setCustomToolTips(true);
-        secondSeries.setToolTips(secondTooltips);
+        if (secondArrayMinersValues.length > 0){
+            AxesChartSeries secondSeries = chart.addSeries("Miner: " + secondMiner, secondArrayMinersValues, secondArrayMinersValues);
+            secondSeries.setCustomToolTips(true);
+            secondSeries.setToolTips(secondTooltips);
+        }
 
         JPanel chartPanel = new XChartPanel<XYChart>(chart);
         return chartPanel;
