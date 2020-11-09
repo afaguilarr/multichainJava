@@ -69,11 +69,11 @@ x NUMBER(30),
 y NUMBER(30)
 );
 
-
-INSERT INTO BLOQUE(id, miner) values(1,'holi');
-INSERT INTO BLOQUE(id, miner) values(2,'holi');
-INSERT INTO BLOQUE(id, miner) values(3,'otro miner');
-INSERT INTO BLOQUE(id, miner) values(4,'otro miner mas');
+INSERT INTO BLOQUE(id, miner, time) values('1','holi', TO_DATE('09/18/20 11:30', 'mm/dd/yy hh24:mi'));
+INSERT INTO BLOQUE(id, miner, time) values('2','holi', TO_DATE('09/19/20 11:30', 'mm/dd/yy hh24:mi'));
+INSERT INTO BLOQUE(id, miner, time) values('3','otro miner', TO_DATE('09/20/20 11:30', 'mm/dd/yy hh24:mi'));
+INSERT INTO BLOQUE(id, miner, time) values('4','otro miner mas', TO_DATE('09/21/20 11:30', 'mm/dd/yy hh24:mi'));
+INSERT INTO BLOQUE(id, miner, time) values('5','otro miner mas mas', TO_DATE('09/22/20 11:30', 'mm/dd/yy hh24:mi'));
 
 INSERT INTO TRANSACCION(block_id, index_transaccion,value_usd) values(1, 1, 10000);
 INSERT INTO TRANSACCION(block_id, index_transaccion,value_usd) values(1, 2, 1000);
@@ -81,3 +81,13 @@ INSERT INTO TRANSACCION(block_id, index_transaccion,value_usd) values(2, 3, 5000
 INSERT INTO TRANSACCION(block_id, index_transaccion,value_usd) values(2, 4, 500);
 INSERT INTO TRANSACCION(block_id, index_transaccion,value_usd) values(3, 5, 7000);
 INSERT INTO TRANSACCION(block_id, index_transaccion,value_usd) values(4, 6, 10000);
+INSERT INTO TRANSACCION(block_id, index_transaccion,value_usd) values(1, 7, 0);
+
+SELECT * FROM BLOQUE;
+SELECT * FROM TRANSACCION;
+
+SELECT TRANSACCION.value_usd FROM TRANSACCION
+INNER JOIN BLOQUE
+ON BLOQUE.id = TRANSACCION.block_id
+WHERE BLOQUE.miner = 'holi' AND TRANSACCION.value_usd > 0 AND
+TO_CHAR(BLOQUE.time,'hh24:mi') BETWEEN '03:29' AND '21:30';
