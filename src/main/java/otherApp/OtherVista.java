@@ -36,7 +36,7 @@ class OtherVista {
             public void actionPerformed(ActionEvent e) {
                 frameTransacciones.setVisible(true);
                 framePrincipal.setVisible(false);
-                frameComparacion.add(volverPrincipal2);
+                frameTransacciones.add(volverPrincipal2);
             }
         });
 
@@ -98,8 +98,116 @@ class OtherVista {
                         index ++;
                     }
 
-                    new MapaTransacciones(initialTime2.getText(), finalTime2.getText(), Integer.parseInt(cuadriculaSize.getText()), colors).setVisible(true);
+                    JFrame mapa = new MapaTransacciones(initialTime2.getText(), finalTime2.getText(), Integer.parseInt(cuadriculaSize.getText()), colors);
 
+                    JLabel labelCuadriculaNumber = new JLabel("Ingrese número de cuadrícula:");
+                    labelCuadriculaNumber.setBounds(150, 870, 300, 30);
+                    JTextField cuadriculaNumber = new JTextField();
+                    cuadriculaNumber.setBounds(130, 910, 300, 40);
+
+                    JLabel labelOrdenarPor = new JLabel("Ordenar por:");
+                    labelOrdenarPor.setBounds(500, 870, 150, 30);
+
+                    JButton time = new JButton("Time");
+                    time.setBounds(650, 650, 100, 50);
+                    time.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            try {
+                                final JFrame frameInfo = new JFrame("Ordenado ascendentemente por time:");
+
+                                JLabel labelOrden = new JLabel("Ordenado ascendentemente por time:");
+                                labelOrden.setBounds(150, 100, 300, 30);
+                                JTextArea info = new JTextArea();
+                                JScrollPane scroll = new JScrollPane(info,
+                                        JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                                        JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+                                scroll.setBounds(130, 130, 400,  300);
+
+                                info.setText("Esto es lo que hay que modificar" + cuadriculaNumber.getText());
+                                info.setEditable(false);
+
+                                frameInfo.add(labelOrden);
+                                frameInfo.add(info);
+
+                                frameInfo.setSize(600,600);
+                                frameInfo.setLayout(null);
+                                frameInfo.setVisible(true);
+
+                            } catch (Exception exception) {
+                                JOptionPane.showMessageDialog(framePrincipal, "Hubo un error " + exception.getMessage());
+                            }
+                        }
+                    });
+
+                    JButton valueUSD = new JButton("Value_usd");
+                    valueUSD.setBounds(760, 650, 100, 50);
+                    valueUSD.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            try {
+                                final JFrame frameInfo = new JFrame("Ordenado ascendentemente por value_usd:");
+
+                                JLabel labelOrden = new JLabel("Ordenado ascendentemente por value_usd:");
+                                labelOrden.setBounds(150, 100, 300, 30);
+                                JTextArea info = new JTextArea();
+                                JScrollPane scroll = new JScrollPane(info,
+                                        JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                                        JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+                                scroll.setBounds(130, 130, 400,  300);
+
+                                info.setText("Esto es lo que hay que modificar" + cuadriculaNumber.getText());
+                                info.setEditable(false);
+
+                                frameInfo.add(labelOrden);
+                                frameInfo.add(info);
+
+                                frameInfo.setSize(600,600);
+                                frameInfo.setLayout(null);
+                                frameInfo.setVisible(true);
+
+                            } catch (Exception exception) {
+                                JOptionPane.showMessageDialog(framePrincipal, "Hubo un error " + exception.getMessage());
+                            }
+                        }
+                    });
+
+                    JButton feeUSD = new JButton("Fee_usd");
+                    feeUSD.setBounds(870, 650, 100, 50);
+                    feeUSD.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            try {
+                                final JFrame frameInfo = new JFrame("Ordenado ascendentemente por fee_usd:");
+
+                                JLabel labelOrden = new JLabel("Ordenado ascendentemente por fee_usd:");
+                                labelOrden.setBounds(150, 100, 300, 30);
+                                JTextArea info = new JTextArea();
+                                JScrollPane scroll = new JScrollPane(info,
+                                        JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                                        JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+                                scroll.setBounds(130, 130, 400,  300);
+
+                                info.setText("Esto es lo que hay que modificar" + cuadriculaNumber.getText());
+                                info.setEditable(false);
+
+                                frameInfo.add(labelOrden);
+                                frameInfo.add(info);
+
+                                frameInfo.setSize(600,600);
+                                frameInfo.setLayout(null);
+                                frameInfo.setVisible(true);
+
+                            } catch (Exception exception) {
+                                JOptionPane.showMessageDialog(framePrincipal, "Hubo un error " + exception.getMessage());
+                            }
+                        }
+                    });
+
+                    mapa.add(cuadriculaNumber);
+                    mapa.add(labelCuadriculaNumber);
+                    mapa.add(labelOrdenarPor);
+                    mapa.add(time);
+                    mapa.add(valueUSD);
+                    mapa.add(feeUSD);
+                    mapa.setVisible(true);
 
 //                    colorScale.setText("");
 //                    cuadriculaSize.setText("");
