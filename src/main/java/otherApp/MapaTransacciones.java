@@ -1,0 +1,77 @@
+package otherApp;
+
+import javax.swing.*;
+import javax.swing.border.BevelBorder;
+import java.awt.*;
+import java.util.ArrayList;
+
+class MapaTransacciones extends JFrame {
+    protected JPanel content;
+    ArrayList<Cuadrado> cuadrados;
+    ArrayList<Transaction> transacciones;
+    ArrayList<Color> colors;
+
+
+    public MapaTransacciones(String initialTime, String finalTime, int size, ArrayList<Color> colors) {
+        this.cuadrados = Cuadrado.generarCuadrados(size);
+        this.transacciones = OracleDatabase.getTransactionsByTime(initialTime, finalTime);
+        this.colors = colors;
+        Cuadrado.asignarTransacciones(this.cuadrados, this.transacciones);
+        Cuadrado.asignarColores(this.cuadrados, this.colors);
+        initComponents();
+    }
+
+
+    private void initComponents() {
+        content = new Content(this.cuadrados);
+        content.setBackground(new java.awt.Color(255, 255, 255));
+        content.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+        this.setContentPane(content);
+        pack();
+    }
+
+    static class Content extends JPanel {
+        ArrayList<Cuadrado> cuadrados;
+
+        Content(ArrayList<Cuadrado> cuadrados) {
+            this.cuadrados = cuadrados;
+            setPreferredSize(new Dimension(1000, 1000));
+        }
+
+        @Override
+        public void paintComponent(Graphics g) {
+            super.paintComponent(g);
+
+            int factor = 8;
+
+            g.drawRect(50, 50, 100 * factor, 100 * factor);
+
+            for (Cuadrado cuadrado : cuadrados) {
+
+                String labelCuadrado = "Numero: " + cuadrado.numero;
+                String transacciones = "Transacciones: " + cuadrado.transacciones.size();
+                String valueUsd ="Total value_usd: " + cuadrado.totalValueUsd();
+                String feeUsd = "Total fee_usd: " + cuadrado.totalFeeUsd();
+
+                g.setColor(cuadrado.color);
+                g.fillRect(cuadrado.x * factor + 50, cuadrado.y * factor + 50, cuadrado.width * factor, cuadrado.height * factor); // tiene offset
+
+                g.setColor(java.awt.Color.black);
+                g.drawRect(cuadrado.x * factor + 50, cuadrado.y * factor + 50, cuadrado.width * factor, cuadrado.height * factor); // tiene offset
+
+                g.drawString(labelCuadrado, cuadrado.x * factor + 50 + 5, cuadrado.y * factor + 50 + 20);
+                g.drawString(transacciones, cuadrado.x * factor + 50 + 5, cuadrado.y * factor + 50 + 40);
+                g.drawString(valueUsd, cuadrado.x * factor + 50 + 5, cuadrado.y * factor + 50 + 60);
+                g.drawString(feeUsd, cuadrado.x * factor + 50 + 5, cuadrado.y * factor + 50 + 80);
+
+                if (cuadrado.x == 0){
+                    g.drawString(Integer.toString(cuadrado.y), cuadrado.x + 50 - 20, cuadrado.y * factor + 50);
+                }
+                if(cuadrado.y == 0){
+                    g.drawString(Integer.toString(cuadrado.x), cuadrado.x * factor + 50, cuadrado.y + 50 - 20);
+                }
+            }
+
+        }
+    }
+}
