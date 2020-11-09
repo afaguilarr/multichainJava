@@ -51,12 +51,12 @@ class OtherVista {
         JTextField secondMiner = new JTextField();
         secondMiner.setBounds(130, 480, 300, 40);
 
-        JLabel labelInitialTime = new JLabel("Ingrese la hora inicial:");
+        JLabel labelInitialTime = new JLabel("Ingrese la hora inicial (formato hh24:mi):");
         labelInitialTime.setBounds(550, 245, 300, 30);
         JTextField initialTime = new JTextField();
         initialTime.setBounds(530, 280, 300, 40);
 
-        JLabel labelFinalTime = new JLabel("Ingrese la hora final:");
+        JLabel labelFinalTime = new JLabel("Ingrese la hora final (formato hh24:mi):");
         labelFinalTime.setBounds(550, 445, 300, 30);
         JTextField finalTime = new JTextField();
         finalTime.setBounds(530, 480, 300, 40);
@@ -92,6 +92,10 @@ class OtherVista {
         frameComparacion.add(firstMiner);
         frameComparacion.add(labelSecondMiner);
         frameComparacion.add(secondMiner);
+        frameComparacion.add(labelInitialTime);
+        frameComparacion.add(initialTime);
+        frameComparacion.add(labelFinalTime);
+        frameComparacion.add(finalTime);
         frameComparacion.add(graficar);
 
         framePrincipal.setSize(1000, 1000);
